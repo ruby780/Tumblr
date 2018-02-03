@@ -20,7 +20,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = photosView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
-        cell.textLabel?.text = "This is row \(indexPath.row)"
+        //cell.textLabel?.text = "This is row \(indexPath.row)"
         
         let post = posts[indexPath.row]
         
