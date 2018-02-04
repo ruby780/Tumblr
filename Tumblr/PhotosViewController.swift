@@ -46,6 +46,14 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         
         photosView.delegate = self
         photosView.dataSource = self
+        
+        self.photosView.rowHeight = 280
+        
+        // Initialize a UI refresh control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        // Add refresh control to table view
+        photosView.insertSubview(refreshControl, at: 0)
 
         // Do any additional setup after loading the view.
         // Network request snippet
@@ -75,6 +83,41 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Makes a network request to update data
+    // Updates the table view with new data
+    // Hides the RefreshControl
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        
+        // Create the URL request 'myRequest'
+        let myRequest = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
+        
+        // Configure session so that completion handler is executed on main UI thread
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+         session.configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        let task: URLSessionDataTask = session.dataTask(with: myRequest) { (data: Data?, response: URLResponse?, error: Error?) in
+            
+            // Use the new data to update the source
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let data = data,
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                print(dataDictionary)
+                
+                // Get the dictionary from the response key
+                let responseDictionary = dataDictionary["response"] as! [String: Any]
+                // Store the returned array of dictionaries in our posts property
+                self.posts = responseDictionary["posts"] as! [[String: Any]]
+                
+                // Reload the table view
+                self.photosView.reloadData()
+                
+                // Tell the refresh control to stop spinning
+                refreshControl.endRefreshing()
+            }
+        }
+        task.resume()
     }
     
 
