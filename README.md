@@ -59,7 +59,7 @@ It was hard getting used to the storyboard and the xcode ui. Also I had trouble 
 
 ------------------------------------------------------------------------------------------------------------------------------
     
-    # Lab 2 - Tumblr
+# Lab 2 - Tumblr
 
 Tumblr is a photo browsing app app using the [The Tumblr API](https://www.tumblr.com/docs/en/api/v2#posts).
 
@@ -69,11 +69,11 @@ Time spent: **X** hours spent in total
 
 The following **required** user stories are complete:
 
-- [ ] User can tab an image to view a larger image in a detail view (5pts)
+- [x] User can tab an image to view a larger image in a detail view (5pts)
 
 The following **stretch** user stories are implemented:
 
-- [ ] Add Avatar and Publish Dates (+2pt)
+- [x] Add Avatar and Publish Dates (+2pt)
 - [ ] Zoomable Photo View (+2pt)
 - [ ] Infinite Scrolling (+2pt)
 
@@ -90,7 +90,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/EfXo1gX.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
