@@ -126,7 +126,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         
         if let indexPath = photosView.indexPath(for: cell) {
             
-            let post = posts[indexPath.row]
+            let post = posts[indexPath.section]
             let destinationViewController = segue.destination as! PhotoDetailsViewController
             destinationViewController.post = post
         }
@@ -156,11 +156,11 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         
         let post = posts[section]
         
-       /* let label = UILabel(
+        let label = UILabel(frame: CGRect(x: 50, y: 0, width: 400, height: 50))
         label.text = post["date"] as? String
-        let fontSize: CGFloat = 12
+        let fontSize: CGFloat = 20
         label.font = label.font.withSize(fontSize)
-        headerView.addSubview(label)*/
+        headerView.addSubview(label)
         
         return headerView
 
